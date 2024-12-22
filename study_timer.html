@@ -56,6 +56,9 @@
             if (!isRunning) {
                 isRunning = true;
                 startStopButton.textContent = 'Stop';
+                if (timeRemaining <= 0) {
+                    timeRemaining = parseInt(timeInput.value) * 60 || 0;
+                }
                 timerInterval = setInterval(() => {
                     if (timeRemaining > 0) {
                         timeRemaining--;
@@ -78,7 +81,7 @@
             clearInterval(timerInterval);
             isRunning = false;
             startStopButton.textContent = 'Start';
-            timeRemaining = parseInt(timeInput.value) * 60;
+            timeRemaining = parseInt(timeInput.value) * 60 || 0;
             updateDisplay();
         }
 
