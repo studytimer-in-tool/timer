@@ -1,26 +1,12 @@
+// HTML File: study_timer.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Timer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .timer {
-            font-size: 3em;
-            margin: 20px 0;
-        }
-        button {
-            font-size: 1.2em;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Study Timer</h1>
@@ -32,64 +18,6 @@
     <button id="startStopButton">Start</button>
     <button id="resetButton">Reset</button>
 
-    <script>
-        let timerInterval;
-        let timeRemaining = 0;
-        let isRunning = false;
-
-        const timeInput = document.getElementById('timeInput');
-        const timerDisplay = document.getElementById('timerDisplay');
-        const startStopButton = document.getElementById('startStopButton');
-        const resetButton = document.getElementById('resetButton');
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        }
-
-        function updateDisplay() {
-            timerDisplay.textContent = formatTime(timeRemaining);
-        }
-
-        function startTimer() {
-            if (!isRunning) {
-                isRunning = true;
-                startStopButton.textContent = 'Stop';
-                if (timeRemaining <= 0) {
-                    timeRemaining = parseInt(timeInput.value) * 60 || 0;
-                }
-                timerInterval = setInterval(() => {
-                    if (timeRemaining > 0) {
-                        timeRemaining--;
-                        updateDisplay();
-                    } else {
-                        clearInterval(timerInterval);
-                        alert("Time's up!");
-                        isRunning = false;
-                        startStopButton.textContent = 'Start';
-                    }
-                }, 1000);
-            } else {
-                isRunning = false;
-                startStopButton.textContent = 'Start';
-                clearInterval(timerInterval);
-            }
-        }
-
-        function resetTimer() {
-            clearInterval(timerInterval);
-            isRunning = false;
-            startStopButton.textContent = 'Start';
-            timeRemaining = parseInt(timeInput.value) * 60 || 0;
-            updateDisplay();
-        }
-
-        startStopButton.addEventListener('click', startTimer);
-        resetButton.addEventListener('click', resetTimer);
-
-        // Initialize timer display
-        resetTimer();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
